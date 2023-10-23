@@ -7,11 +7,6 @@
 #define ARQ "price.txt"
 //ORIGINAL
 
-typedef struct
-{
-    char nome[100];
-} dataPrice;
-
 int linha(int qtdLinha)
 {
     int i;
@@ -34,8 +29,6 @@ int main()
     int numParcelas;
     char iniciar;
     char tabDet;
-    char salvarFinPrice;
-    dataPrice a;
 
     FILE *arquin; //ponteiro para arquivo de entrada
     arquin = fopen(ARQ,"a");  //arquivo de entrada usando "w" que gravará temporariamente no arquivo
@@ -47,12 +40,12 @@ int main()
         sleep(1);
         system("cls");
         linha(MAX);
-        printf("Deseja fazer uma nova simulacao de financiamento no modelo Price?\n\n[s]SIM\n[n]NAO\n\n");
+        printf("Deseja fazer uma nova simulação de financiamento no modelo Price?\n\n[s]SIM\n[n]NAO\n\n");
         scanf("%c",&iniciar);
         getchar();
         if (iniciar != 's' && iniciar != 'S' && iniciar != 'n' && iniciar != 'N')
         {
-            printf("Opcao incorreta! Digite 's' para SIM e 'n' para NAO\n\n");
+            printf("Opção incorreta! Digite 's' para SIM e 'n' para NÃO\n\n");
             sleep(1);
             system("cls");
         }
@@ -74,7 +67,7 @@ int main()
                 printf("Digite a taxa de juros(%%): ");
                 scanf("%f",&taxaJuros);
 
-                printf("Digite o numero de parcelas: ");
+                printf("Digite o número de parcelas: ");
                 scanf("%i",&numParcelas);
 
                 printf("\n");
@@ -85,7 +78,7 @@ int main()
                 linha(MAX);
                 printf("Valor do financiamento:R$ %.2f reais.\n",valorFinanciado);
                 printf("Valor fixo das parcelas: R$ %.2f reais.\n",vlParcelasPorMes);
-                printf("Numeros de parcelas: %i vezes\n", numParcelas);
+                printf("Números de parcelas: %i vezes\n", numParcelas);
                 printf("Taxa de juros(%%): %.2f%% a.m.\n\n",taxaJuros);
 
                 //Salvando informacoes no arquivo price.txt
@@ -103,18 +96,18 @@ int main()
 
                 amort = vlParcelasPorMes - vlPorcInicial;
 
-                printf("Valor do juros no primeiro mes: R$ %.2f reais.\n",vlPorcInicial);
-                printf("Valor da amortizacao no primeiro mes: R$ %.2f reais.\n\n",amort);
+                printf("Valor do juros no primeiro mês: R$ %.2f reais.\n",vlPorcInicial);
+                printf("Valor da amortização no primeiro mês: R$ %.2f reais.\n\n",amort);
                 getchar();
 
                 do
                 {
-                    printf("Deseja ver tabela detalhada?\n");
+                    printf("Deseja ver tabela detalhada?\n\n[s]SIM\n[n]NÃO\n\n\n");
                     scanf("%c",&tabDet);
                     getchar();
                     if(tabDet != 's' && tabDet != 'S' && tabDet != 'n' && tabDet != 'N')
                     {
-                        printf("Opcao incorreta! Digite 's' para SIM e 'n' para NAO\n\n");
+                        printf("Opção incorreta! Digite 's' para SIM e 'n' para NÃO\n\n");
                         sleep(1);
                         system("cls");
                     }
@@ -127,7 +120,7 @@ int main()
 
                             printf("Valor do financiamento:R$ %.2f reais.\n",valorFinanciado);
                             printf("Valor fixo das parcelas: R$ %.2f reais.\n",vlParcelasPorMes);
-                            printf("Numeros de parcelas: %i vezes\n", numParcelas);
+                            printf("Números de parcelas: %i vezes\n", numParcelas);
                             printf("Taxa de juros(%%): %.2f%% a.m.\n\n",taxaJuros);
                             linha(MAX);
 
@@ -137,8 +130,8 @@ int main()
 
                             amort = vlParcelasPorMes - vlPorcInicial;
 
-                            printf("Valor do juros no primeiro mes: R$ %.2f reais.\n",vlPorcInicial);
-                            printf("Valor da amortizacao no primeiro mes: R$ %.2f reais.\n\n",amort);
+                            printf("Valor do juros no primeiro mês: R$ %.2f reais.\n",vlPorcInicial);
+                            printf("Valor da amortização no primeiro mês: R$ %.2f reais.\n\n",amort);
 
                             for(int i=2; i<=numParcelas; i++)
                             {
@@ -159,39 +152,12 @@ int main()
                                 }
                                 else
                                 {
-                                    printf("Valor atualizado da amortizacao: R$ %.2f reais\n",amort);
+                                    printf("Valor atualizado da amortização: R$ %.2f reais\n",amort);
                                     printf("Valor atualizado do juros: R$ %.2f reais\n",vlPorcInicial);
                                     printf("Saldo devedor: R$ %.2f reais\n\n",valorFinanciado);
 
                                 }
                             }
-                            do
-                            {
-                                printf("Deseja salvar simulação de financiamento Price?\n");
-                                scanf("%c",&salvarFinPrice);
-                                getchar();
-                                if(salvarFinPrice != 's' && salvarFinPrice != 'S' && salvarFinPrice != 'n' && salvarFinPrice != 'N')
-                                {
-                                    printf("Opcao incorreta! Digite 's' para SIM e 'n' para NAO\n\n");
-                                    sleep(1);
-                                    system("cls");
-                                }
-                                else
-                                {
-                                    if(salvarFinPrice=='s' || salvarFinPrice=='S')
-                                    {
-                                        //buscar cadastro do cliente
-                                        sleep(1);
-                                        system("cls");
-                                        printf("Digite nome de usuário cadastrado: ");
-                                        scanf("%s",a.nome);
-
-
-                                        //apagar daqui pra cima se der errado
-                                    }
-                                }
-
-                            }while(salvarFinPrice != 'n' && salvarFinPrice != 'N');
                             break;
 
                         }
